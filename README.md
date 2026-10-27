@@ -59,11 +59,9 @@ Install the following software:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/careerpilot-ai.git
+git clone https://github.com/Pavithra-Annapurna/careerpilot-ai.git
 cd careerpilot-ai
 ```
-
-Replace `YOUR_USERNAME` with your GitHub username.
 
 ### 2. Configure environment variables
 
