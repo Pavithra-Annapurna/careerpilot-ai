@@ -1,56 +1,166 @@
-# CareerPilot AI — Full-stack starter
+# CareerPilot AI 🚀
 
-A runnable MVP starter for a resume analyzer and job matcher using React/Vite, Spring Boot, MySQL, PDFBox and an optional OpenAI-compatible API.
+**AI-Assisted Resume Analysis and Career Guidance Platform**
 
-## Requirements
-- Java 21
-- Maven 3.9+
-- Node.js 20+ and npm
-- Docker Desktop (recommended)
+CareerPilot AI is a web application that helps users evaluate their resumes against job requirements, identify skill gaps, and receive AI-assisted recommendations to improve their job readiness.
 
-## Run it
-1. Extract the ZIP and open a terminal in `careerpilot-ai`.
-2. Start MySQL:
-   ```bash
-   docker compose up -d mysql
-   ```
-3. Start backend in terminal 1:
-   ```bash
-   cd backend
-   ```
-   Set environment variables (PowerShell):
-   ```powershell
-   $env:DB_URL="jdbc:mysql://localhost:3306/careerpilot?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
-   $env:DB_USERNAME="careerpilot"
-   $env:DB_PASSWORD="careerpilot_dev"
-   $env:JWT_SECRET="replace-this-with-a-long-random-secret-at-least-32-characters"
-   # Optional: $env:OPENAI_API_KEY="your-key"
-   mvn spring-boot:run
-   ```
-   macOS/Linux:
-   ```bash
-   export DB_URL='jdbc:mysql://localhost:3306/careerpilot?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC'
-   export DB_USERNAME=careerpilot DB_PASSWORD=careerpilot_dev
-   export JWT_SECRET='replace-this-with-a-long-random-secret-at-least-32-characters'
-   mvn spring-boot:run
-   ```
-4. Start frontend in terminal 2:
-   ```bash
-   cd frontend
-   cp .env.example .env
-   npm install
-   npm run dev
-   ```
-5. Open http://localhost:5173, register, upload a text-based PDF, and run an analysis.
+## ✨ Features
 
-API: http://localhost:8080/api/v1  
-Swagger: http://localhost:8080/swagger-ui/index.html  
-Health: http://localhost:8080/actuator/health
+- **User Authentication:** Register and sign in to access your workspace.
+- **Resume Management:** Upload and manage PDF resumes.
+- **Job Exploration:** Browse job roles, companies, descriptions, and required skills.
+- **Resume Matching:** Compare resume skills with a selected job's requirements.
+- **Skill Gap Analysis:** Identify matched and missing skills.
+- **AI-Assisted Recommendations:** Receive suggestions based on resume content and job requirements.
+- **Analysis History:** View previously saved analysis results.
+- **Dashboard Analytics:** Track uploaded resumes, completed analyses, available roles, and average match score.
 
-The API works without an AI key using fallback recommendations. For AI feedback, set `OPENAI_API_KEY` in the backend environment before starting Spring Boot. Do not commit secrets. This is a learning MVP; the match score is required-skill coverage, not an ATS score or hiring prediction.
+## 🛠️ Tech Stack
 
-## MVP workflow
-Register/login → upload PDF → choose a sample job → calculate skill coverage → get recommendations → view history.
+| Component | Technologies |
+|---|---|
+| Frontend | React, Vite, JavaScript |
+| UI Components | CSS, Lucide React |
+| Backend | Java, Spring Boot |
+| Database | MySQL |
+| ORM | Spring Data JPA, Hibernate |
+| API Communication | REST APIs, Axios |
+| Containerization | Docker |
+| Build Tool | Maven |
 
-## Before public deployment
-Replace all development secrets, use HTTPS and managed MySQL, configure exact CORS origins, add rate limiting and file scanning, implement data deletion/retention, and use Flyway/Liquibase migrations rather than `ddl-auto=update`. Review the AI provider's data policy before sending resumes.
+## 📂 Project Structure
+
+```text
+careerpilot-ai/
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── .env.example
+├── backend/
+│   ├── src/
+│   └── pom.xml
+├── docker-compose.yml
+├── .gitignore
+└── README.md
+```
+
+## ⚙️ Prerequisites
+
+Install the following software:
+
+- Java Development Kit compatible with the backend
+- Maven
+- Node.js and npm
+- Docker Desktop
+- Git
+
+## 🚀 Installation and Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/careerpilot-ai.git
+cd careerpilot-ai
+```
+
+Replace `YOUR_USERNAME` with your GitHub username.
+
+### 2. Configure environment variables
+
+Configure the backend with the required environment variables:
+
+- `DB_URL`
+- `DB_USERNAME`
+- `DB_PASSWORD`
+- `JWT_SECRET`
+- `SERVER_PORT`
+
+Configure the frontend API URL in `frontend/.env`:
+
+```dotenv
+VITE_API_BASE_URL=http://localhost:8081/api/v1
+```
+
+Keep actual credentials and secrets in your local environment. Never commit passwords, private tokens, or real `.env` files.
+
+### 3. Start MySQL
+
+Ensure Docker Desktop is running, then execute this command from the project root:
+
+```bash
+docker compose up -d mysql
+```
+
+Verify that the MySQL container is running before proceeding.
+
+### 4. Start the Spring Boot backend
+
+Open a terminal:
+
+```bash
+cd backend
+mvn spring-boot:run
+```
+
+The development backend uses port `8081`. Configure the required environment variables before starting the application.
+
+### 5. Start the React frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Open the local URL displayed by Vite, usually:
+
+http://localhost:5173
+
+## 🧭 Application Workflow
+
+1. Register or sign in.
+2. Upload a PDF resume.
+3. Explore available job roles.
+4. Select a target role.
+5. Choose a resume and run the analysis.
+6. Review the match score, matched skills, missing skills, and recommendations.
+7. View previous analyses in Analysis History.
+
+## 📊 Resume Matching Methodology
+
+CareerPilot AI compares extracted resume text against the required skills for a selected job.
+
+The match score is calculated using required-skill coverage:
+
+**Match Score = (Matched Required Skills / Total Required Skills) × 100**
+
+This is a heuristic measure of skill coverage, not an official ATS score or a guarantee of interview selection.
+
+## 🔒 Security and Privacy
+
+- Keep database credentials and JWT secrets out of version control.
+- Do not upload real resumes or personal user data to the repository.
+- Enforce authentication and authorization for protected endpoints.
+- Ensure users can access only their own resumes and analyses before deploying the application.
+
+## 🔮 Future Enhancements
+
+- Semantic resume-to-job matching.
+- Improved PDF parsing and support for scanned documents.
+- Personalized skill development roadmaps.
+- Resume improvement suggestions.
+- Automated unit and integration testing.
+- Cloud deployment and continuous integration.
+
+## 👩‍💻 Author
+
+**Pavithra Annapurna**
+
+- GitHub: [Pavithra-Annapurna](https://github.com/Pavithra-Annapurna)
+- LinkedIn: [Connect on LinkedIn](https://www.linkedin.com/in/pavithra-annapurna-245274339/)
+
+---
+
+*CareerPilot AI — Turn your skills into your next career opportunity.*
