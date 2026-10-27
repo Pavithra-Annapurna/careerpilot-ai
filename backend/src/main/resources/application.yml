@@ -1,0 +1,31 @@
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  application:
+    name: careerpilot-api
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/careerpilot?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${DB_USERNAME:careerpilot}
+    password: ${DB_PASSWORD:careerpilot_dev}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+app:
+  jwt:
+    secret: ${JWT_SECRET:local-dev-secret-change-this-to-a-long-random-secret}
+    expiration-ms: 86400000
+  cors:
+    allowed-origins: ${APP_CORS_ALLOWED_ORIGINS:http://localhost:5173}
+  ai:
+    api-key: ${OPENAI_API_KEY:}
+    model: ${OPENAI_MODEL:gpt-4o-mini}

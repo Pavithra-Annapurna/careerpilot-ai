@@ -1,0 +1,38 @@
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Backend build output
+backend/target/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+backend/.env
+backend/.env.*
+
+# Local uploads, logs and temporary files
+uploads/
+backend/uploads/
+*.log
+logs/
+
+# IDE and operating system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Java temporary files
+*.class
+
+# Local database and backups
+*.sql
+*.dump
+*.bak
