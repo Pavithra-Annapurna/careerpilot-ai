@@ -138,13 +138,6 @@ The match score is calculated using required-skill coverage:
 
 This is a heuristic measure of skill coverage, not an official ATS score or a guarantee of interview selection.
 
-## 🔒 Security and Privacy
-
-- Keep database credentials and JWT secrets out of version control.
-- Do not upload real resumes or personal user data to the repository.
-- Enforce authentication and authorization for protected endpoints.
-- Ensure users can access only their own resumes and analyses before deploying the application.
-
 ## 🔮 Future Enhancements
 
 - Semantic resume-to-job matching.
